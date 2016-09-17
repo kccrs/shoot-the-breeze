@@ -8199,7 +8199,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	__webpack_require__(478);
+	__webpack_require__(480);
 	
 	(0, _reactDom.render)(_react2.default.createElement(_Application2.default, null), document.getElementById('application'));
 
@@ -29410,6 +29410,14 @@
 	
 	var _lodash = __webpack_require__(476);
 	
+	var _SignIn = __webpack_require__(478);
+	
+	var _SignIn2 = _interopRequireDefault(_SignIn);
+	
+	var _SignOut = __webpack_require__(479);
+	
+	var _SignOut2 = _interopRequireDefault(_SignOut);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29450,7 +29458,6 @@
 	          })
 	        });
 	      });
-	
 	      _firebase2.default.auth().onAuthStateChanged(function (user) {
 	        return _this2.setState({ user: user });
 	      });
@@ -29482,73 +29489,104 @@
 	      var draftMessage = _state2.draftMessage;
 	
 	
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'Application' },
-	        _react2.default.createElement(
-	          'header',
-	          null,
+	      if (!user) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'Application LoggedIn' },
 	          _react2.default.createElement(
-	            'h1',
+	            'header',
 	            null,
-	            ' Shoot the Breeze'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'ul',
-	          null,
-	          this.state.messages.map(function (m) {
-	            return _react2.default.createElement(
-	              'li',
-	              { key: m.key },
-	              '  ',
-	              m.user.displayName,
-	              ': ',
-	              m.content
-	            );
-	          })
-	        ),
-	        _react2.default.createElement(
-	          'footer',
-	          null,
-	          user ? _react2.default.createElement(
-	            'p',
-	            null,
-	            'Hello ',
-	            user.displayName
-	          ) : _react2.default.createElement(
-	            'button',
-	            { onClick: function onClick() {
-	                return (0, _firebase.signIn)();
-	              } },
-	            'Sign In'
+	            _react2.default.createElement(
+	              'h1',
+	              null,
+	              ' Shoot the Breeze'
+	            )
 	          ),
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'MessageInput' },
-	            _react2.default.createElement('input', {
-	              placeholder: 'Message…',
-	              value: this.state.draftMessage,
-	              onChange: function onChange(e) {
-	                return _this3.setState({ draftMessage: e.target.value });
+	            'ul',
+	            null,
+	            this.state.messages.map(function (m) {
+	              return _react2.default.createElement(
+	                'li',
+	                { key: m.key },
+	                '  ',
+	                m.user.displayName,
+	                ': ',
+	                m.content
+	              );
+	            })
+	          ),
+	          _react2.default.createElement(
+	            'footer',
+	            null,
+	            _react2.default.createElement(_SignIn2.default, {
+	              user: user,
+	              handleUser: function handleUser() {
+	                return _this3.setState({ user: user });
 	              }
-	            }),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: function onClick() {
-	                  return _this3.addNewMessage();
-	                } },
-	              'Add New Message'
-	            )
+	            })
 	          )
-	        )
-	      );
+	        );
+	      }
+	      if (user) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'Application LoggedOut' },
+	          _react2.default.createElement(
+	            'header',
+	            null,
+	            _react2.default.createElement(
+	              'h1',
+	              null,
+	              ' Shoot the Breeze'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'ul',
+	            null,
+	            this.state.messages.map(function (m) {
+	              return _react2.default.createElement(
+	                'li',
+	                { key: m.key },
+	                '  ',
+	                m.user.displayName,
+	                ': ',
+	                m.content
+	              );
+	            })
+	          ),
+	          _react2.default.createElement(
+	            'footer',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'MessageInput' },
+	              _react2.default.createElement('input', {
+	                placeholder: 'Message…',
+	                value: this.state.draftMessage,
+	                onChange: function onChange(e) {
+	                  return _this3.setState({ draftMessage: e.target.value });
+	                }
+	              }),
+	              _react2.default.createElement(
+	                'button',
+	                { onClick: function onClick() {
+	                    return _this3.addNewMessage();
+	                  } },
+	                'Add New Message'
+	              )
+	            ),
+	            _react2.default.createElement(_SignOut2.default, null)
+	          )
+	        );
+	      }
 	    }
 	  }]);
 	
 	  return Application;
 	}(_react.Component);
 	
+	// user={this.state.user}
 	// <header>
 	//     <h1> Shoot the Breeze</h1>
 	//     <Filter />
@@ -47011,13 +47049,99 @@
 /* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function () {
+	  // const user  = this.props.user;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'SignIn' },
+	    _react2.default.createElement(
+	      'button',
+	      { className: 'SignInButton', onClick: function onClick() {
+	          return (0, _firebase.signIn)(_firebase.provider);
+	        } },
+	      'Sign In'
+	    )
+	  );
+	};
+	
+	var _react = __webpack_require__(299);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _firebase = __webpack_require__(470);
+	
+	var _firebase2 = _interopRequireDefault(_firebase);
+	
+	var _Application = __webpack_require__(469);
+	
+	var _Application2 = _interopRequireDefault(_Application);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 479 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function () {
+	  var user = this.props.user;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'SignOut' },
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Hello! ',
+	      user.displayName
+	    ),
+	    _react2.default.createElement(
+	      'button',
+	      { className: 'SignOutButton', onClick: function onClick() {
+	          return _firebase2.default.auth().signOut();
+	        } },
+	      'Sign Out'
+	    )
+	  );
+	};
+	
+	var _react = __webpack_require__(299);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _firebase = __webpack_require__(470);
+	
+	var _firebase2 = _interopRequireDefault(_firebase);
+	
+	var _Application = __webpack_require__(469);
+	
+	var _Application2 = _interopRequireDefault(_Application);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 480 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(479);
+	var content = __webpack_require__(481);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(481)(content, {});
+	var update = __webpack_require__(483)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -47034,10 +47158,10 @@
 	}
 
 /***/ },
-/* 479 */
+/* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(480)();
+	exports = module.exports = __webpack_require__(482)();
 	// imports
 	
 	
@@ -47048,7 +47172,7 @@
 
 
 /***/ },
-/* 480 */
+/* 482 */
 /***/ function(module, exports) {
 
 	/*
@@ -47104,7 +47228,7 @@
 
 
 /***/ },
-/* 481 */
+/* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
