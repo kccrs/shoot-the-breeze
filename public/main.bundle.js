@@ -29485,17 +29485,14 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'Application' },
-	        user ? _react2.default.createElement(
-	          'p',
+	        _react2.default.createElement(
+	          'header',
 	          null,
-	          'Hello ',
-	          user.displayName
-	        ) : _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick() {
-	              return (0, _firebase.signIn)();
-	            } },
-	          'Sign In'
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            ' Shoot the Breeze'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'ul',
@@ -29504,6 +29501,7 @@
 	            return _react2.default.createElement(
 	              'li',
 	              { key: m.key },
+	              '  ',
 	              m.user.displayName,
 	              ': ',
 	              m.content
@@ -29511,21 +29509,37 @@
 	          })
 	        ),
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'MessageInput' },
-	          _react2.default.createElement('input', {
-	            placeholder: 'Message…',
-	            value: this.state.draftMessage,
-	            onChange: function onChange(e) {
-	              return _this3.setState({ draftMessage: e.target.value });
-	            }
-	          }),
-	          _react2.default.createElement(
+	          'footer',
+	          null,
+	          user ? _react2.default.createElement(
+	            'p',
+	            null,
+	            'Hello ',
+	            user.displayName
+	          ) : _react2.default.createElement(
 	            'button',
 	            { onClick: function onClick() {
-	                return _this3.addNewMessage();
+	                return (0, _firebase.signIn)();
 	              } },
-	            'Add New Message'
+	            'Sign In'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'MessageInput' },
+	            _react2.default.createElement('input', {
+	              placeholder: 'Message…',
+	              value: this.state.draftMessage,
+	              onChange: function onChange(e) {
+	                return _this3.setState({ draftMessage: e.target.value });
+	              }
+	            }),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: function onClick() {
+	                  return _this3.addNewMessage();
+	                } },
+	              'Add New Message'
+	            )
 	          )
 	        )
 	      );
@@ -29534,6 +29548,31 @@
 	
 	  return Application;
 	}(_react.Component);
+	
+	// <header>
+	//     <h1> Shoot the Breeze</h1>
+	//     <Filter />
+	//     <Sort />
+	// </header>
+	// <section>
+	//   //messages render here
+	// </section>
+	// <aside>
+	//   <UsersList />
+	// </aside>
+	// <footer>
+	//   <article>
+	//     <SignIn />
+	//     <SignOutButton />
+	//   </article>
+	//   <article>
+	//     <Filter />
+	//     <CharacterCount />
+	//     <SubmitButton />
+	//     <ClearButton />
+	//   </article>
+	// </footer>
+	
 	
 	exports.default = Application;
 
