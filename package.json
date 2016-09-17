@@ -53,5 +53,8 @@
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.2"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "moment": "^2.15.0"
+  }
 }
