@@ -29434,9 +29434,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// Very few things in this component are a good idea.
-	// Feel free to blow it all away.
-	
 	var Application = function (_Component) {
 	  _inherits(Application, _Component);
 	
@@ -29465,22 +29462,7 @@
 	          })
 	        });
 	      });
-	
-	      // firebase.auth().onAuthStateChanged(user => this.setState({ user }));
 	    }
-	
-	    // addNewMessage() {
-	    //   const { user, draftMessage } = this.state;
-	    //
-	    //   reference.push({
-	    //     user: pick(user, 'displayName', 'email', 'uid'),
-	    //     content: draftMessage,
-	    //     createdAt: Date.now()
-	    //   });
-	    //
-	    //   this.setState({ draftMessage: '' });
-	    // }
-	
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -29516,8 +29498,8 @@
 	              'li',
 	              { key: m.key },
 	              ' ',
-	              m.user.createdAt,
-	              ': ',
+	              (0, _moment2.default)(m.createdAt).format('MMMM Do, h:mm a'),
+	              ' ',
 	              m.user.displayName,
 	              ': ',
 	              m.content
@@ -47014,6 +46996,12 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _firebase = __webpack_require__(470);
+	
+	var _firebase2 = _interopRequireDefault(_firebase);
+	
+	var _lodash = __webpack_require__(476);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -47025,24 +47013,28 @@
 	var Filter = function (_Component) {
 	    _inherits(Filter, _Component);
 	
-	    function Filter(props) {
+	    function Filter() {
 	        _classCallCheck(this, Filter);
 	
-	        return _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).call(this));
+	        var _this = _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).call(this));
+	
+	        _this.state = {
+	            messages: _this.messagesFromFirebase
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(Filter, [{
 	        key: 'filterMessages',
 	        value: function filterMessages(e) {
-	            var messages = this.props.messages;
+	            var messages = this.state.messages;
 	            var filterBy = e.target.value;
 	            var regexp = new RegExp(filterBy, 'i');
-	            var filteredMessages = messages.map(function (m) {
+	            var filteredMessages = messages.filter(function (m) {
 	                if (regexp.test(m.content)) {
 	                    return m;
 	                }
 	            });
-	            debugger;
 	            if (filterBy === '') {
 	                filteredMessages = messages;
 	            }
@@ -47059,16 +47051,28 @@
 	                _react2.default.createElement(
 	                    'label',
 	                    null,
-	                    'Filter:',
-	                    _react2.default.createElement('input', {
-	                        className: 'FilterInput',
+	                    ' Filter:',
+	                    _react2.default.createElement('input', { className: 'FilterInput',
 	                        onChange: function onChange(e) {
 	                            return _this2.filterMessages(e);
 	                        },
-	                        placeholder: 'Filter'
-	                    })
+	                        placeholder: 'Filter' })
 	                )
 	            );
+	        }
+	    }, {
+	        key: 'messagesFromFirebase',
+	        get: function get() {
+	            var _this3 = this;
+	
+	            _firebase.reference.limitToLast(100).on('value', function (snapshot) {
+	                var messages = snapshot.val() || {};
+	                _this3.setState({
+	                    messages: (0, _lodash.map)(messages, function (val, key) {
+	                        return (0, _lodash.extend)(val, { key: key });
+	                    })
+	                });
+	            });
 	        }
 	    }]);
 	
@@ -47137,7 +47141,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      // const { user, handleUser} = this.props;
 	      var user = this.state.user;
 	
 	      if (user) {
@@ -47243,7 +47246,7 @@
 	      _firebase.reference.push({
 	        user: (0, _lodash.pick)(user, 'displayName', 'email', 'uid'),
 	        content: newMessage,
-	        createdAt: (0, _moment2.default)().format('MMMM Do YYYY, h:mm a')
+	        createdAt: Date.now()
 	      });
 	
 	      this.setState({ newMessage: '' });
