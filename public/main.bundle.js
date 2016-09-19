@@ -29513,7 +29513,7 @@
 	          _react2.default.createElement(
 	            'h1',
 	            null,
-	            ' Shoot the Breeze'
+	            'Shoot the Breeze'
 	          ),
 	          _react2.default.createElement(_Filter2.default, {
 	            messages: messages,
@@ -29533,7 +29533,7 @@
 	          'aside',
 	          null,
 	          _react2.default.createElement(_UsersList2.default, {
-	            messages: messages,
+	            messages: this.state.messages,
 	            handleFilterByUser: function handleFilterByUser(uid) {
 	              return _this3.handleFilterByUser(uid);
 	            }
@@ -51915,11 +51915,9 @@
 	        { className: 'MessageList' },
 	        this.props.messages.map(function (m) {
 	          return _react2.default.createElement(_Message2.default, {
-	            key: m.id,
-	            id: m.id,
-	            messageDate: (0, _moment2.default)(m.createdAt).format('MMMM Do, h:mm a'),
-	            username: m.user.displayName,
-	            messageContent: m.content
+	            key: m.key,
+	            message: m,
+	            user: m.user
 	          });
 	        })
 	      );
@@ -51947,10 +51945,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _firebase = __webpack_require__(473);
-	
-	var _firebase2 = _interopRequireDefault(_firebase);
-	
 	var _moment = __webpack_require__(472);
 	
 	var _moment2 = _interopRequireDefault(_moment);
@@ -51975,23 +51969,25 @@
 	  _createClass(Message, [{
 	    key: 'render',
 	    value: function render() {
+	      var message = this.props.message;
+	      var user = this.props.user;
 	      return _react2.default.createElement(
 	        'li',
-	        { className: 'SingleMessage', key: this.props.id },
+	        { className: 'SingleMessage', key: message.key },
 	        _react2.default.createElement(
 	          'span',
 	          { className: 'MessageDate' },
-	          this.props.messageDate
+	          (0, _moment2.default)(message.createdAt).format('MMMM Do, h:mm a')
 	        ),
 	        _react2.default.createElement(
 	          'span',
 	          { className: 'UserName' },
-	          this.props.username
+	          user.displayName
 	        ),
 	        _react2.default.createElement(
 	          'p',
 	          { className: 'MessageContent' },
-	          this.props.messageContent
+	          message.content
 	        )
 	      );
 	    }
