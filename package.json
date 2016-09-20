@@ -1,4 +1,4 @@
-{
+  {
   "name": "shoot-the-breeze",
   "version": "1.0.0",
   "description": "A basic chat application using react with firebase",
