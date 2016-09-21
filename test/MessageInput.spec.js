@@ -3,6 +3,8 @@ import { shallow, mount } from 'enzyme';
 import { assert } from 'chai';
 
 import MessageInput from '../lib/components/MessageInput';
+import ActionButtons from '../lib/components/ActionButtons';
+
 
 describe('MessageInput', () => {
 
