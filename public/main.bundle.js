@@ -29438,9 +29438,9 @@
 	
 	var _MessagesArea2 = _interopRequireDefault(_MessagesArea);
 	
-	var _filterByUser = __webpack_require__(488);
+	var _filterMessages = __webpack_require__(488);
 	
-	var _filterByUser2 = _interopRequireDefault(_filterByUser);
+	var _filterMessages2 = _interopRequireDefault(_filterMessages);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29450,11 +29450,12 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var _ = __webpack_require__(470);
+	
 	//Components
 	
 	
 	//Helper Functions
-	
 	
 	var Application = function (_Component) {
 	  _inherits(Application, _Component);
@@ -29494,7 +29495,7 @@
 	        this.setState({ listIsFiltered: false });
 	      } else {
 	        var messages = this.state.messages;
-	        this.setState({ filteredMessages: (0, _filterByUser2.default)(uid, messages), listIsFiltered: true, user: uid });
+	        this.setState({ filteredMessages: (0, _filterMessages2.default)(uid, messages), listIsFiltered: true, user: uid });
 	      }
 	    }
 	  }, {
@@ -51499,6 +51500,8 @@
 	
 	var _lodash = __webpack_require__(470);
 	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51551,8 +51554,8 @@
 	      var users = this.props.messages.map(function (m) {
 	        return { userName: m.user.displayName, key: m.user.uid };
 	      });
-	      var uniqueUsers = _.uniqBy(users, 'key');
-	      return _.sortBy(uniqueUsers, 'userName');
+	      var uniqueUsers = _lodash2.default.uniqBy(users, 'key');
+	      return _lodash2.default.sortBy(uniqueUsers, 'userName');
 	    }
 	  }]);
 	
@@ -51953,8 +51956,13 @@
 	        { className: 'SingleMessage', key: message.key },
 	        _react2.default.createElement(
 	          'span',
-	          { className: 'MessageDate' },
+	          { className: 'FullMessageDate' },
 	          (0, _moment2.default)(message.createdAt).format('MMMM Do, h:mm a')
+	        ),
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'MobileMessageDate' },
+	          (0, _moment2.default)(message.createdAt).format('M[/]D, h:mm a')
 	        ),
 	        _react2.default.createElement(
 	          'span',
