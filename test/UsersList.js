@@ -9,6 +9,7 @@ require('locus');
 
 import mockMessages from './helpers/mock-messages';
 
+
 describe('Users List', () => {
     
     context('Shallow tests', () => {
