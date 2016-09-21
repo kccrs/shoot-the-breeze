@@ -5,13 +5,8 @@ import { assert } from 'chai';
 
 import Application from '../lib/components/Application';
 import UsersList from '../lib/components/UsersList';
+require('locus')
 
 describe('Users List', () => {
-
-  it('renders as a <div>', () => {
-    const wrapper = shallow(<UsersList />)
-    assert.equal(wrapper.type(), 'div');
-  });
-  
 
 });
