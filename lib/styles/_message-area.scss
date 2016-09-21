@@ -1,0 +1,29 @@
+
+.MessageList {
+  height: 50vh;
+  margin: 0 auto;
+  overflow-y: scroll;
+  width: 90%;
+}
+
+.SingleMessage {
+  margin-top: 15px;
+}
+
+.MessageDate {
+  color: $color-date-text;
+}
+
+.UserName {
+  color: $color-user-text;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.MessageContent {
+  margin-top: 10px;
+}
+
+.UserList {
+  display: none;
+}

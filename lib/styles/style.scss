@@ -1,6 +1,7 @@
 @import '_reset';
 @import '_variables';
 @import '_header-footer';
+@import '_message-area';
 
 /* WHOLE PAGE STYLES */
 html {
@@ -14,6 +15,7 @@ html {
 body {
   font-family: $main-font;
   height: 100vh;
+  position: relative;
 }
 
 /* Message Display Area */

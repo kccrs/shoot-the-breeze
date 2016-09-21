@@ -51272,7 +51272,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -51290,54 +51290,50 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Filter = function (_Component) {
-	    _inherits(Filter, _Component);
+	  _inherits(Filter, _Component);
 	
-	    function Filter() {
-	        _classCallCheck(this, Filter);
+	  function Filter() {
+	    _classCallCheck(this, Filter);
 	
-	        return _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).apply(this, arguments));
+	  }
+	
+	  _createClass(Filter, [{
+	    key: 'filterMessages',
+	    value: function filterMessages(e) {
+	      var regexp = new RegExp(e.target.value, 'i');
+	
+	      var filteredMessages = this.props.messages.filter(function (m) {
+	        if (regexp.test(m.content)) {
+	          return m;
+	        }
+	      });
+	
+	      if (e.target.value) {
+	        this.props.handleFilter(filteredMessages);
+	      } else {
+	        this.props.handleRemoveFilter();
+	      }
 	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
 	
-	    _createClass(Filter, [{
-	        key: 'filterMessages',
-	        value: function filterMessages(e) {
-	            var regexp = new RegExp(e.target.value, 'i');
+	      return _react2.default.createElement(
+	        'article',
+	        { className: 'FilterArea' },
+	        _react2.default.createElement('input', { className: 'FilterInput',
+	          onChange: function onChange(e) {
+	            return _this2.filterMessages(e);
+	          },
+	          placeholder: 'Filter'
+	        })
+	      );
+	    }
+	  }]);
 	
-	            var filteredMessages = this.props.messages.filter(function (m) {
-	                if (regexp.test(m.content)) {
-	                    return m;
-	                }
-	            });
-	
-	            if (e.target.value) {
-	                this.props.handleFilter(filteredMessages);
-	            } else {
-	                this.props.handleRemoveFilter();
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-	
-	            return _react2.default.createElement(
-	                'article',
-	                null,
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    ' Filter:',
-	                    _react2.default.createElement('input', { className: 'FilterInput',
-	                        onChange: function onChange(e) {
-	                            return _this2.filterMessages(e);
-	                        },
-	                        placeholder: 'Filter' })
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Filter;
+	  return Filter;
 	}(_react.Component);
 	
 	exports.default = Filter;
@@ -51404,15 +51400,17 @@
 	
 	      return _react2.default.createElement(
 	        'article',
-	        null,
+	        { className: 'SortContainer' },
 	        _react2.default.createElement(_ActionButtons2.default, {
-	          text: 'Sort +',
+	          id: 'SortUp',
+	          text: 'Sort ↑',
 	          handleClick: function handleClick() {
 	            return _this2.sortChronologically();
 	          }
 	        }),
 	        _react2.default.createElement(_ActionButtons2.default, {
-	          text: 'Sort -',
+	          id: 'SortDown',
+	          text: 'Sort ↓',
 	          handleClick: function handleClick() {
 	            return _this2.sortReverseChronologically();
 	          }
@@ -51490,7 +51488,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -51510,54 +51508,55 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var UsersList = function (_Component) {
-	    _inherits(UsersList, _Component);
+	  _inherits(UsersList, _Component);
 	
-	    function UsersList() {
-	        _classCallCheck(this, UsersList);
+	  function UsersList() {
+	    _classCallCheck(this, UsersList);
 	
-	        return _possibleConstructorReturn(this, (UsersList.__proto__ || Object.getPrototypeOf(UsersList)).apply(this, arguments));
-	    }
+	    return _possibleConstructorReturn(this, (UsersList.__proto__ || Object.getPrototypeOf(UsersList)).apply(this, arguments));
+	  }
 	
-	    _createClass(UsersList, [{
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
+	  _createClass(UsersList, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
 	
+	      return _react2.default.createElement(
+	        'article',
+	        { className: 'UserList' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Users'
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          this.uniqueUsers.map(function (u) {
 	            return _react2.default.createElement(
-	                'article',
-	                null,
-	                _react2.default.createElement(
-	                    'h3',
-	                    null,
-	                    ' Users '
-	                ),
-	                _react2.default.createElement(
-	                    'ul',
-	                    null,
-	                    this.uniqueUsers.map(function (u) {
-	                        return _react2.default.createElement(
-	                            'li',
-	                            { onClick: _this2.props.handleFilterByUser.bind(_this2, u.key), key: u.key },
-	                            ' ',
-	                            u.userName,
-	                            ' '
-	                        );
-	                    })
-	                )
+	              'li',
+	              {
+	                onClick: _this2.props.handleFilterByUser.bind(_this2, u.key),
+	                key: u.key },
+	              ' ',
+	              u.userName
 	            );
-	        }
-	    }, {
-	        key: 'uniqueUsers',
-	        get: function get() {
-	            var users = this.props.messages.map(function (m) {
-	                return { userName: m.user.displayName, key: m.user.uid };
-	            });
-	            var uniqueUsers = _.uniqBy(users, 'key');
-	            return _.sortBy(uniqueUsers, 'userName');
-	        }
-	    }]);
+	          })
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'uniqueUsers',
+	    get: function get() {
+	      var users = this.props.messages.map(function (m) {
+	        return { userName: m.user.displayName, key: m.user.uid };
+	      });
+	      var uniqueUsers = _.uniqBy(users, 'key');
+	      return _.sortBy(uniqueUsers, 'userName');
+	    }
+	  }]);
 	
-	    return UsersList;
+	  return UsersList;
 	}(_react.Component);
 	
 	exports.default = UsersList;
@@ -51631,7 +51630,7 @@
 	      if (user) {
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'SignOut' },
+	          { className: 'LogOut' },
 	          _react2.default.createElement(
 	            'p',
 	            null,
@@ -51641,7 +51640,7 @@
 	            user.email,
 	            ')'
 	          ),
-	          _react2.default.createElement(_ActionButtons2.default, { id: 'SignOutButton', text: 'Sign Out', handleClick: function handleClick() {
+	          _react2.default.createElement(_ActionButtons2.default, { id: 'LogOutButton', text: 'Log Out', handleClick: function handleClick() {
 	              return (0, _firebase.signOut)();
 	            } })
 	        );
@@ -51650,8 +51649,8 @@
 	      if (!user) {
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'SignIn' },
-	          _react2.default.createElement(_ActionButtons2.default, { id: 'SignInButton', text: 'Sign In', handleClick: function handleClick() {
+	          { className: 'LogIn' },
+	          _react2.default.createElement(_ActionButtons2.default, { id: 'LogInButton', text: 'Log In', handleClick: function handleClick() {
 	              return (0, _firebase.signIn)();
 	            } })
 	        );
@@ -51742,14 +51741,18 @@
 	      return _react2.default.createElement(
 	        'section',
 	        { className: 'MessageInput' },
-	        _react2.default.createElement('textarea', {
-	          placeholder: 'Message…',
-	          value: this.state.newMessage,
-	          maxLength: '140',
-	          onChange: function onChange(e) {
-	            return _this2.setState({ newMessage: e.target.value });
-	          } }),
-	        _react2.default.createElement(_CharacterCount2.default, { newMessage: this.state.newMessage }),
+	        _react2.default.createElement(
+	          'article',
+	          { className: 'MessageContainer' },
+	          _react2.default.createElement('textarea', {
+	            placeholder: 'Message…',
+	            value: this.state.newMessage,
+	            maxLength: '140',
+	            onChange: function onChange(e) {
+	              return _this2.setState({ newMessage: e.target.value });
+	            } }),
+	          _react2.default.createElement(_CharacterCount2.default, { newMessage: this.state.newMessage })
+	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'FooterButtons' },
@@ -51834,11 +51837,7 @@
 	      return _react2.default.createElement(
 	        'section',
 	        { className: 'CharacterCount' },
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          this.state.charactersLeft
-	        )
+	        this.state.charactersLeft
 	      );
 	    }
 	  }]);
@@ -52033,7 +52032,7 @@
 	
 	
 	// module
-	exports.push([module.id, "body {\n  background: #FFEBCD; }\n\n.hello-world {\n  font-family: cursive; }\n\n#new-message--content {\n  height: 100px;\n  border: 1px dotted aliceblue; }\n", ""]);
+	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ninput[type=range] {\n  -webkit-appearance: none;\n  /* Hides the slider so that custom slider can be made */\n  width: 100%;\n  /* Specific width is required for Firefox. */\n  background: transparent;\n  /* Otherwise white in Chrome */ }\n\ninput[type=range]::-webkit-slider-thumb {\n  -webkit-appearance: none; }\n\ninput[type=range]:focus {\n  outline: none;\n  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */ }\n\ninput[type=range]::-ms-track {\n  width: 100%;\n  cursor: pointer;\n  /* Hides the slider so custom styles can be added */\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\n/* Header and Footer */\nheader,\nfooter {\n  background-color: #2c3e50;\n  color: white;\n  height: 25vh;\n  width: 100%; }\n\n.SortContainer,\n.FooterButtons {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-top: 15px; }\n\nh1 {\n  display: none; }\n\ninput,\ntextarea {\n  background-color: #ecf0f1;\n  border-radius: 3px;\n  border: none;\n  height: 7vh;\n  font-size: 18px; }\n\n.FilterArea,\n.MessageContainer {\n  padding-top: 20px; }\n\n.FilterInput {\n  display: block;\n  margin: 0 auto;\n  width: 90%; }\n\n.ActionButtons {\n  color: white;\n  border: none;\n  border-radius: 3px;\n  font-size: 20px;\n  letter-spacing: .07em;\n  height: 7vh;\n  width: 35%; }\n\n#SortUp,\n#SortDown {\n  background-color: #3498db; }\n\n#SortUp,\n#SubmitButton {\n  margin-right: 10px; }\n\n#SortDown,\n#ClearButton {\n  margin-left: 10px; }\n\nfooter {\n  margin-top: 10px;\n  position: fixed;\n  bottom: 0; }\n\n.LogIn,\n.LogOut {\n  display: none; }\n\n.MessageContainer {\n  display: flex;\n  justify-content: center; }\n\ntextarea {\n  margin-right: 20px;\n  width: 70%; }\n\n.CharacterCount {\n  font-size: 18px;\n  padding-top: 10px; }\n\n#LogInButton,\n#LogOutButton,\n#SubmitButton {\n  background-color: #2ecc71; }\n\n#ClearButton {\n  background-color: #e74c3c; }\n\n.MessageList {\n  height: 50vh;\n  margin: 0 auto;\n  overflow-y: scroll;\n  width: 90%; }\n\n.SingleMessage {\n  margin-top: 15px; }\n\n.MessageDate {\n  color: #9b59b6; }\n\n.UserName {\n  color: #2980b9;\n  font-weight: bold;\n  margin-left: 12px; }\n\n.MessageContent {\n  margin-top: 10px; }\n\n.UserList {\n  display: none; }\n\n/* WHOLE PAGE STYLES */\nhtml {\n  box-sizing: border-box; }\n\n*, *:before, *:after {\n  box-sizing: inherit; }\n\nbody {\n  font-family: \"Fira Sans\", sans-serif;\n  height: 100vh;\n  position: relative; }\n\n/* Message Display Area */\n", ""]);
 	
 	// exports
 

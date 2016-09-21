@@ -5,6 +5,7 @@ footer {
   background-color: $color-header-bar;
   color: white;
   height: 25vh;
+  width: 100%;
 }
 
 .SortContainer,
@@ -62,6 +63,12 @@ textarea {
 #SortDown,
 #ClearButton {
   margin-left: 10px;
+}
+
+footer {
+  margin-top: 10px;
+  position: fixed;
+  bottom: 0;
 }
 
 .LogIn,
