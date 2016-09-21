@@ -1,0 +1,104 @@
+/* Header and Footer */
+
+header,
+footer {
+  background-color: $color-header-bar;
+  color: white;
+  height: 25vh;
+  width: 100%;
+}
+
+.SortContainer,
+.FooterButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+h1 {
+  display: none;
+}
+
+input,
+textarea {
+  background-color: $color-input-fields;
+  border-radius: 4px;
+  border: none;
+  font-size: 18px;
+  height: 7vh;
+  padding-left: 10px;
+}
+
+.FilterArea,
+.MessageContainer {
+  padding-top: 20px;
+}
+
+.FilterInput {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.ActionButtons {
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  height: 7vh;
+  letter-spacing: .07em;
+  width: 35%;
+}
+
+#SortUp,
+#SortDown {
+  background-color: $color-sort-button;
+}
+
+#SortUp,
+#SubmitButton {
+  margin-right: 10px;
+}
+
+#SortDown,
+#ClearButton {
+  margin-left: 10px;
+}
+
+footer {
+  bottom: 0;
+  margin-top: 10px;
+  position: fixed;
+}
+
+.LogIn,
+.LogOut {
+  display: none;
+}
+
+.MessageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+textarea {
+  margin-right: 20px;
+  padding-top: 10px;
+  width: 70%;
+}
+
+.CharacterCount {
+  font-size: 18px;
+  padding-top: 10px;
+}
+
+#LogInButton,
+#LogOutButton,
+#SubmitButton {
+  background-color: $color-submit-button;
+}
+
+#ClearButton {
+  background-color: $color-clear-button;
+}
