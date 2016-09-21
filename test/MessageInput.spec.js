@@ -1,9 +1,8 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
-import { assert, expect } from 'chai';
+import { shallow, mount } from 'enzyme';
+import { assert } from 'chai';
 
 import MessageInput from '../lib/components/MessageInput';
-// import ActionButtons from '..lib/components/ActionButtons';
 
 describe('MessageInput', () => {
 
@@ -25,5 +24,10 @@ describe('MessageInput', () => {
     assert.lengthOf(wrapper.find('CharacterCount'), 1);
   });
 
-
+  it('allows us to set state', () => {
+    const wrapper = mount(<MessageInput user='user' />);
+    assert.equal(wrapper.state('newMessage'), '');
+    wrapper.setState({ newMessage: 'Seems legit.' });
+    assert.equal(wrapper.state('newMessage'), 'Seems legit.');
+  });
 });
