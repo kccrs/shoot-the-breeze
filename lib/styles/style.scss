@@ -1,0 +1,47 @@
+@import '_reset';
+@import '_variables';
+
+/* WHOLE PAGE STYLES */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $main-font;
+}
+
+/* Header and Footer */
+
+header,
+footer {
+  background-color: $color-header-bar;
+  color: white;
+}
+
+input,
+textarea {
+  background-color: $color-input-fields;
+}
+
+.ActionButtons {
+  color: white;
+}
+
+#SortUp,
+#SortDown {
+  background-color: $color-sort-button;
+}
+
+#LogInButton,
+#LogOutButton,
+#SubmitButton {
+  background-color: $color-submit-button;
+}
+
+#ClearButton {
+  background-color: $color-clear-button;
+}

@@ -29422,11 +29422,11 @@
 	
 	var _SortButtons2 = _interopRequireDefault(_SortButtons);
 	
-	var _UsersList = __webpack_require__(481);
+	var _UsersList = __webpack_require__(482);
 	
 	var _UsersList2 = _interopRequireDefault(_UsersList);
 	
-	var _SignIn = __webpack_require__(482);
+	var _SignIn = __webpack_require__(483);
 	
 	var _SignIn2 = _interopRequireDefault(_SignIn);
 	
@@ -29449,6 +29449,12 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	//Components
+	
+	
+	//Helper Functions
+	
 	
 	var Application = function (_Component) {
 	  _inherits(Application, _Component);
@@ -29518,7 +29524,10 @@
 	          _react2.default.createElement(_Filter2.default, {
 	            messages: messages,
 	            handleFilter: function handleFilter(filteredMessages) {
-	              return _this3.setState({ messages: filteredMessages });
+	              return _this3.setState({ filteredMessages: filteredMessages, listIsFiltered: true });
+	            },
+	            handleRemoveFilter: function handleRemoveFilter() {
+	              return _this3.setState({ filteredMessages: [], listIsFiltered: false });
 	            }
 	          }),
 	          _react2.default.createElement(_SortButtons2.default, {
@@ -50587,7 +50596,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.reference = exports.signIn = undefined;
+	exports.reference = exports.signOut = exports.signIn = undefined;
 	
 	var _firebase = __webpack_require__(474);
 	
@@ -50611,6 +50620,9 @@
 	exports.default = _firebase2.default;
 	var signIn = exports.signIn = function signIn() {
 	  return auth.signInWithPopup(provider);
+	};
+	var signOut = exports.signOut = function signOut() {
+	  return auth.signOut();
 	};
 	var reference = exports.reference = _firebase2.default.database().ref('messages');
 
@@ -51269,12 +51281,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _firebase = __webpack_require__(473);
-	
-	var _firebase2 = _interopRequireDefault(_firebase);
-	
-	var _lodash = __webpack_require__(470);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51289,29 +51295,25 @@
 	    function Filter() {
 	        _classCallCheck(this, Filter);
 	
-	        var _this = _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).call(this));
-	
-	        _this.state = {
-	            messages: _this.messagesFromFirebase
-	        };
-	        return _this;
+	        return _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).apply(this, arguments));
 	    }
 	
 	    _createClass(Filter, [{
 	        key: 'filterMessages',
 	        value: function filterMessages(e) {
-	            var messages = this.state.messages;
-	            var filterBy = e.target.value;
-	            var regexp = new RegExp(filterBy, 'i');
-	            var filteredMessages = messages.filter(function (m) {
+	            var regexp = new RegExp(e.target.value, 'i');
+	
+	            var filteredMessages = this.props.messages.filter(function (m) {
 	                if (regexp.test(m.content)) {
 	                    return m;
 	                }
 	            });
-	            if (filterBy === '') {
-	                filteredMessages = messages;
+	
+	            if (e.target.value) {
+	                this.props.handleFilter(filteredMessages);
+	            } else {
+	                this.props.handleRemoveFilter();
 	            }
-	            this.props.handleFilter(filteredMessages);
 	        }
 	    }, {
 	        key: 'render',
@@ -51333,20 +51335,6 @@
 	                )
 	            );
 	        }
-	    }, {
-	        key: 'messagesFromFirebase',
-	        get: function get() {
-	            var _this3 = this;
-	
-	            _firebase.reference.limitToLast(100).on('value', function (snapshot) {
-	                var messages = snapshot.val() || {};
-	                _this3.setState({
-	                    messages: (0, _lodash.map)(messages, function (val, key) {
-	                        return (0, _lodash.extend)(val, { key: key });
-	                    })
-	                });
-	            });
-	        }
 	    }]);
 	
 	    return Filter;
@@ -51358,7 +51346,7 @@
 /* 480 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -51369,6 +51357,10 @@
 	var _react = __webpack_require__(299);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _ActionButtons = __webpack_require__(481);
+	
+	var _ActionButtons2 = _interopRequireDefault(_ActionButtons);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -51384,11 +51376,11 @@
 	  function SortButtons() {
 	    _classCallCheck(this, SortButtons);
 	
-	    return _possibleConstructorReturn(this, (SortButtons.__proto__ || Object.getPrototypeOf(SortButtons)).call(this));
+	    return _possibleConstructorReturn(this, (SortButtons.__proto__ || Object.getPrototypeOf(SortButtons)).apply(this, arguments));
 	  }
 	
 	  _createClass(SortButtons, [{
-	    key: "sortChronologically",
+	    key: 'sortChronologically',
 	    value: function sortChronologically() {
 	      var messages = this.props.messages;
 	      var sortedMessages = messages.sort(function (a, b) {
@@ -51397,7 +51389,7 @@
 	      this.props.handleSort(sortedMessages);
 	    }
 	  }, {
-	    key: "sortReverseChronologically",
+	    key: 'sortReverseChronologically',
 	    value: function sortReverseChronologically() {
 	      var messages = this.props.messages;
 	      var sortedMessages = messages.sort(function (a, b) {
@@ -51406,22 +51398,22 @@
 	      this.props.handleSort(sortedMessages);
 	    }
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
 	
 	      return _react2.default.createElement(
-	        "article",
+	        'article',
 	        null,
-	        _react2.default.createElement("button", {
-	          children: "Sort +",
-	          onClick: function onClick() {
+	        _react2.default.createElement(_ActionButtons2.default, {
+	          text: 'Sort +',
+	          handleClick: function handleClick() {
 	            return _this2.sortChronologically();
 	          }
 	        }),
-	        _react2.default.createElement("button", {
-	          children: "Sort -",
-	          onClick: function onClick() {
+	        _react2.default.createElement(_ActionButtons2.default, {
+	          text: 'Sort -',
+	          handleClick: function handleClick() {
 	            return _this2.sortReverseChronologically();
 	          }
 	        })
@@ -51436,6 +51428,63 @@
 
 /***/ },
 /* 481 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(299);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _firebase = __webpack_require__(473);
+	
+	var _firebase2 = _interopRequireDefault(_firebase);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ActionButtons = function (_Component) {
+	  _inherits(ActionButtons, _Component);
+	
+	  function ActionButtons() {
+	    _classCallCheck(this, ActionButtons);
+	
+	    return _possibleConstructorReturn(this, (ActionButtons.__proto__ || Object.getPrototypeOf(ActionButtons)).apply(this, arguments));
+	  }
+	
+	  _createClass(ActionButtons, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'button',
+	        {
+	          className: 'ActionButtons',
+	          id: this.props.id,
+	          disabled: this.props.disabled,
+	          onClick: this.props.handleClick },
+	        this.props.text
+	      );
+	    }
+	  }]);
+	
+	  return ActionButtons;
+	}(_react.Component);
+	
+	exports.default = ActionButtons;
+
+/***/ },
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51466,7 +51515,7 @@
 	    function UsersList() {
 	        _classCallCheck(this, UsersList);
 	
-	        return _possibleConstructorReturn(this, (UsersList.__proto__ || Object.getPrototypeOf(UsersList)).call(this));
+	        return _possibleConstructorReturn(this, (UsersList.__proto__ || Object.getPrototypeOf(UsersList)).apply(this, arguments));
 	    }
 	
 	    _createClass(UsersList, [{
@@ -51514,7 +51563,7 @@
 	exports.default = UsersList;
 
 /***/ },
-/* 482 */
+/* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51533,7 +51582,7 @@
 	
 	var _firebase2 = _interopRequireDefault(_firebase);
 	
-	var _ActionButtons = __webpack_require__(483);
+	var _ActionButtons = __webpack_require__(481);
 	
 	var _ActionButtons2 = _interopRequireDefault(_ActionButtons);
 	
@@ -51593,7 +51642,7 @@
 	            ')'
 	          ),
 	          _react2.default.createElement(_ActionButtons2.default, { id: 'SignOutButton', text: 'Sign Out', handleClick: function handleClick() {
-	              return _firebase2.default.auth().signOut();
+	              return (0, _firebase.signOut)();
 	            } })
 	        );
 	      }
@@ -51614,63 +51663,6 @@
 	}(_react.Component);
 	
 	exports.default = SignIn;
-
-/***/ },
-/* 483 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(299);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _firebase = __webpack_require__(473);
-	
-	var _firebase2 = _interopRequireDefault(_firebase);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ActionButtons = function (_Component) {
-	  _inherits(ActionButtons, _Component);
-	
-	  function ActionButtons() {
-	    _classCallCheck(this, ActionButtons);
-	
-	    return _possibleConstructorReturn(this, (ActionButtons.__proto__ || Object.getPrototypeOf(ActionButtons)).apply(this, arguments));
-	  }
-	
-	  _createClass(ActionButtons, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'button',
-	        {
-	          className: 'ActionButtons',
-	          id: this.props.id,
-	          disabled: this.props.disabled,
-	          onClick: this.props.handleClick },
-	        this.props.text
-	      );
-	    }
-	  }]);
-	
-	  return ActionButtons;
-	}(_react.Component);
-	
-	exports.default = ActionButtons;
 
 /***/ },
 /* 484 */
@@ -51694,15 +51686,11 @@
 	
 	var _lodash = __webpack_require__(470);
 	
-	var _moment = __webpack_require__(472);
-	
-	var _moment2 = _interopRequireDefault(_moment);
-	
 	var _CharacterCount = __webpack_require__(485);
 	
 	var _CharacterCount2 = _interopRequireDefault(_CharacterCount);
 	
-	var _ActionButtons = __webpack_require__(483);
+	var _ActionButtons = __webpack_require__(481);
 	
 	var _ActionButtons2 = _interopRequireDefault(_ActionButtons);
 	
@@ -51807,10 +51795,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _firebase = __webpack_require__(473);
-	
-	var _firebase2 = _interopRequireDefault(_firebase);
-	
 	var _MessageInput = __webpack_require__(484);
 	
 	var _MessageInput2 = _interopRequireDefault(_MessageInput);
@@ -51879,12 +51863,6 @@
 	var _react = __webpack_require__(299);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _lodash = __webpack_require__(470);
-	
-	var _moment = __webpack_require__(472);
-	
-	var _moment2 = _interopRequireDefault(_moment);
 	
 	var _Message = __webpack_require__(487);
 	
@@ -52036,8 +52014,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js!./style.scss", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js!./style.scss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./style.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
