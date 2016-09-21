@@ -7,6 +7,9 @@ import Application from '../lib/components/Application';
 import UsersList from '../lib/components/UsersList';
 require('locus')
 
-describe('Users List', () => {
+import MockMessages from './helpers/mock-messages';
 
+describe('Users List', () => {
+    // const wrapper = mount(<UsersList messages={MockMessages}/>)
+    
 });
