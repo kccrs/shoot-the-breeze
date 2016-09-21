@@ -8,16 +8,32 @@ footer {
   width: 100%;
 }
 
+
 .SortContainer,
 .FooterButtons {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 15px;
+  @media #{$breakpoint-640} {
+    // display: inline-block;
+    float: right;
+    height: 100%;
+    width: 35%;
+  }
 }
+
+// .FooterButtons {
+//   // display: inline;
+//   float: right;
+// }
+
 
 h1 {
   display: none;
+  // @media #{$breakpoint-640} {
+  //   display: inline-block;
+  // }
 }
 
 input,
@@ -30,16 +46,46 @@ textarea {
   padding-left: 10px;
 }
 
+
 .FilterArea,
-.MessageContainer {
+.InputContainer {
   padding-top: 20px;
+  width: 50%;
+  @media #{$breakpoint-640} {
+    display: inline-block;
+    // width: 50%;
+    // height: 100%;
+  }
 }
 
 .FilterInput {
   display: block;
   margin: 0 auto;
   width: 90%;
+  @media #{$breakpoint-640} {
+    // display: inline-block;
+    width: 100%;
+  }
 }
+
+header,
+.MessageInput {
+  @media #{$breakpoint-640} {
+    // display: flex;
+    // display: inline-block;
+    // justify-content: space-between;
+    // align-items: center;
+    // height: 100%;
+    // width: 100%;
+  }
+}
+
+// .MessageInput {
+//   @media #{$breakpoint-640} {
+//     // height: 50%;
+//     width: 60%;
+//   }
+// }
 
 .ActionButtons {
   border-radius: 4px;
@@ -49,7 +95,12 @@ textarea {
   height: 7vh;
   letter-spacing: .07em;
   width: 35%;
+  @media #{$breakpoint-640} {
+    width: 40%;
+  }
 }
+
+
 
 #SortUp,
 #SortDown {
@@ -77,20 +128,31 @@ footer {
   display: none;
 }
 
-.MessageContainer {
+.InputContainer {
   display: flex;
   justify-content: center;
+  @media #{$breakpoint-640} {
+    display: inline-block;
+    width: 65%;
+  }
 }
 
 textarea {
   margin-right: 20px;
   padding-top: 10px;
   width: 70%;
+  @media #{$breakpoint-640} {
+    width: 70%;
+  }
 }
 
 .CharacterCount {
   font-size: 18px;
   padding-top: 10px;
+  @media #{$breakpoint-640} {
+    display: inline-block;
+    width: 10%;
+  }
 }
 
 #LogInButton,
@@ -101,4 +163,17 @@ textarea {
 
 #ClearButton {
   background-color: $color-clear-button;
+}
+
+header,
+footer {
+  @media #{$breakpoint-640} {
+    height: 15vh;
+  }
+}
+
+.SortContainer {
+  @media #{$breakpoint-640} {
+    width: 30%;
+  }
 }

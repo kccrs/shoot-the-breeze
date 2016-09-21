@@ -10,8 +10,8 @@ require('lodash');
 
 describe('Application', () => {
   const wrapper = shallow(<Application />)
-  
-  it('renders as a <div>', () => {  
+
+  it('renders as a <div>', () => {
     assert.equal(wrapper.type(), 'div');
   });
 

@@ -29543,6 +29543,7 @@
 	          'aside',
 	          null,
 	          _react2.default.createElement(_UsersList2.default, {
+	            user: this.state.user,
 	            messages: this.state.messages,
 	            handleFilterByUser: function handleFilterByUser(uid) {
 	              return _this3.handleFilterByUser(uid);
@@ -51524,6 +51525,7 @@
 	    value: function render() {
 	      var _this2 = this;
 	
+	      var user = this.props.user;
 	      return _react2.default.createElement(
 	        'article',
 	        { className: 'UserList' },
@@ -51536,14 +51538,28 @@
 	          'ul',
 	          null,
 	          this.uniqueUsers.map(function (u) {
-	            return _react2.default.createElement(
-	              'li',
-	              {
-	                onClick: _this2.props.handleFilterByUser.bind(_this2, u.key),
-	                key: u.key },
-	              ' ',
-	              u.userName
-	            );
+	            if (u.key === user.uid) {
+	              return _react2.default.createElement(
+	                'li',
+	                {
+	                  onClick: function onClick() {
+	                    return _this2.props.handleFilterByUser(u.key);
+	                  },
+	                  key: u.key,
+	                  className: 'myUserName' },
+	                u.userName
+	              );
+	            } else {
+	              return _react2.default.createElement(
+	                'li',
+	                {
+	                  onClick: function onClick() {
+	                    return _this2.props.handleFilterByUser(u.key);
+	                  },
+	                  key: u.key },
+	                u.userName
+	              );
+	            }
 	          })
 	        )
 	      );
@@ -51746,7 +51762,7 @@
 	        { className: 'MessageInput' },
 	        _react2.default.createElement(
 	          'article',
-	          { className: 'MessageContainer' },
+	          { className: 'InputContainer' },
 	          _react2.default.createElement('textarea', {
 	            placeholder: 'Message…',
 	            value: this.state.newMessage,
@@ -51956,12 +51972,12 @@
 	        { className: 'SingleMessage', key: message.key },
 	        _react2.default.createElement(
 	          'span',
-	          { className: 'FullMessageDate' },
+	          { className: 'MessageDate FullDate' },
 	          (0, _moment2.default)(message.createdAt).format('MMMM Do, h:mm a')
 	        ),
 	        _react2.default.createElement(
 	          'span',
-	          { className: 'MobileMessageDate' },
+	          { className: 'MessageDate MobileDate' },
 	          (0, _moment2.default)(message.createdAt).format('M[/]D, h:mm a')
 	        ),
 	        _react2.default.createElement(
@@ -52040,7 +52056,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ninput[type=range] {\n  -webkit-appearance: none;\n  /* Hides the slider so that custom slider can be made */\n  width: 100%;\n  /* Specific width is required for Firefox. */\n  background: transparent;\n  /* Otherwise white in Chrome */ }\n\ninput[type=range]::-webkit-slider-thumb {\n  -webkit-appearance: none; }\n\ninput[type=range]:focus {\n  outline: none;\n  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */ }\n\ninput[type=range]::-ms-track {\n  width: 100%;\n  cursor: pointer;\n  /* Hides the slider so custom styles can be added */\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\n/* Header and Footer */\nheader,\nfooter {\n  background-color: #2c3e50;\n  color: white;\n  height: 25vh;\n  width: 100%; }\n\n.SortContainer,\n.FooterButtons {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-top: 15px; }\n\nh1 {\n  display: none; }\n\ninput,\ntextarea {\n  background-color: #ecf0f1;\n  border-radius: 4px;\n  border: none;\n  font-size: 18px;\n  height: 7vh;\n  padding-left: 10px; }\n\n.FilterArea,\n.MessageContainer {\n  padding-top: 20px; }\n\n.FilterInput {\n  display: block;\n  margin: 0 auto;\n  width: 90%; }\n\n.ActionButtons {\n  border-radius: 4px;\n  border: none;\n  color: white;\n  font-size: 20px;\n  height: 7vh;\n  letter-spacing: .07em;\n  width: 35%; }\n\n#SortUp,\n#SortDown {\n  background-color: #3498db; }\n\n#SortUp,\n#SubmitButton {\n  margin-right: 10px; }\n\n#SortDown,\n#ClearButton {\n  margin-left: 10px; }\n\nfooter {\n  bottom: 0;\n  margin-top: 10px;\n  position: fixed; }\n\n.LogIn,\n.LogOut {\n  display: none; }\n\n.MessageContainer {\n  display: flex;\n  justify-content: center; }\n\ntextarea {\n  margin-right: 20px;\n  padding-top: 10px;\n  width: 70%; }\n\n.CharacterCount {\n  font-size: 18px;\n  padding-top: 10px; }\n\n#LogInButton,\n#LogOutButton,\n#SubmitButton {\n  background-color: #2ecc71; }\n\n#ClearButton {\n  background-color: #e74c3c; }\n\n.MessageList {\n  height: 50vh;\n  margin: 0 auto;\n  overflow-y: scroll;\n  width: 90%; }\n\n.SingleMessage {\n  font-size: 20px;\n  margin-top: 15px; }\n\n.MessageDate {\n  color: #9b59b6; }\n\n.UserName {\n  color: #2980b9;\n  font-weight: bold;\n  margin-left: 12px; }\n\n.MessageContent {\n  margin-top: 10px; }\n\n.UserList {\n  display: none; }\n\n/* WHOLE PAGE STYLES */\nhtml {\n  box-sizing: border-box; }\n\n*, *:before, *:after {\n  box-sizing: inherit; }\n\nbody {\n  font-family: \"Fira Sans\", sans-serif;\n  height: 100vh;\n  position: relative; }\n\n/* Message Display Area */\n", ""]);
+	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ninput[type=range] {\n  -webkit-appearance: none;\n  /* Hides the slider so that custom slider can be made */\n  width: 100%;\n  /* Specific width is required for Firefox. */\n  background: transparent;\n  /* Otherwise white in Chrome */ }\n\ninput[type=range]::-webkit-slider-thumb {\n  -webkit-appearance: none; }\n\ninput[type=range]:focus {\n  outline: none;\n  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */ }\n\ninput[type=range]::-ms-track {\n  width: 100%;\n  cursor: pointer;\n  /* Hides the slider so custom styles can be added */\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\n/* Header and Footer */\nheader,\nfooter {\n  background-color: #2c3e50;\n  color: white;\n  height: 25vh;\n  width: 100%; }\n\n.SortContainer,\n.FooterButtons {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-top: 15px; }\n  @media screen and (min-width: 640px) {\n    .SortContainer,\n    .FooterButtons {\n      float: right;\n      width: 35%; } }\n\nh1 {\n  display: none; }\n\ninput,\ntextarea {\n  background-color: #ecf0f1;\n  border-radius: 4px;\n  border: none;\n  font-size: 18px;\n  height: 7vh;\n  padding-left: 10px; }\n\n.FilterArea,\n.InputContainer {\n  padding-top: 20px;\n  width: 50%; }\n  @media screen and (min-width: 640px) {\n    .FilterArea,\n    .InputContainer {\n      display: inline-block; } }\n\n.FilterInput {\n  display: block;\n  margin: 0 auto;\n  width: 90%; }\n  @media screen and (min-width: 640px) {\n    .FilterInput {\n      width: 100%; } }\n\n@media screen and (min-width: 640px) {\n  header,\n  .MessageInput {\n    display: inline-block;\n    align-items: center;\n    width: 100%; } }\n\n@media screen and (min-width: 640px) {\n  .MessageInput {\n    width: 60%; } }\n\n.ActionButtons {\n  border-radius: 4px;\n  border: none;\n  color: white;\n  font-size: 20px;\n  height: 7vh;\n  letter-spacing: .07em;\n  width: 35%; }\n  @media screen and (min-width: 640px) {\n    .ActionButtons {\n      width: 60%; } }\n\n#SortUp,\n#SortDown {\n  background-color: #3498db; }\n\n#SortUp,\n#SubmitButton {\n  margin-right: 10px; }\n\n#SortDown,\n#ClearButton {\n  margin-left: 10px; }\n\nfooter {\n  bottom: 0;\n  margin-top: 10px;\n  position: fixed; }\n\n.LogIn,\n.LogOut {\n  display: none; }\n\n.InputContainer {\n  display: flex;\n  justify-content: center; }\n  @media screen and (min-width: 640px) {\n    .InputContainer {\n      display: inline-block;\n      width: 100%; } }\n\ntextarea {\n  margin-right: 20px;\n  padding-top: 10px;\n  width: 70%; }\n  @media screen and (min-width: 640px) {\n    textarea {\n      width: 60%; } }\n\n.CharacterCount {\n  font-size: 18px;\n  padding-top: 10px; }\n  @media screen and (min-width: 640px) {\n    .CharacterCount {\n      display: inline-block;\n      width: 20%; } }\n\n#LogInButton,\n#LogOutButton,\n#SubmitButton {\n  background-color: #2ecc71; }\n\n#ClearButton {\n  background-color: #e74c3c; }\n\n@media screen and (min-width: 640px) {\n  header,\n  footer {\n    height: 15vh; } }\n\n@media screen and (min-width: 640px) {\n  .SortContainer {\n    width: 30%; } }\n\n.MessageList {\n  height: 50vh;\n  margin: 0 auto;\n  overflow-y: scroll;\n  width: 90%; }\n\n.SingleMessage {\n  font-size: 20px;\n  margin-top: 15px; }\n\n.MessageDate {\n  color: #9b59b6; }\n\n.FullDate {\n  display: none; }\n\n.UserName {\n  color: #2980b9;\n  font-weight: bold;\n  margin-left: 12px; }\n\n.MessageContent {\n  margin-top: 10px; }\n\n.UserList {\n  display: none; }\n\n/* WHOLE PAGE STYLES */\nhtml {\n  box-sizing: border-box; }\n\n*, *:before, *:after {\n  box-sizing: inherit; }\n\nbody {\n  font-family: \"Fira Sans\", sans-serif;\n  height: 100vh;\n  position: relative; }\n\n/* Message Display Area */\n", ""]);
 	
 	// exports
 

@@ -3,8 +3,6 @@ import { shallow, mount } from 'enzyme';
 import { assert } from 'chai';
 
 import MessageInput from '../lib/components/MessageInput';
-import ActionButtons from '../lib/components/ActionButtons';
-
 
 describe('MessageInput', () => {
 
@@ -26,9 +24,14 @@ describe('MessageInput', () => {
     assert.lengthOf(wrapper.find('CharacterCount'), 1);
   });
 
-  it('allows us to set state', () => {
-    const wrapper = mount(<MessageInput user='user' />);
+  it('should have an empty string as default state for newMessage', function() {
     assert.equal(wrapper.state('newMessage'), '');
+  });
+
+  it('allows us to set state', () => {
+    
+    const wrapper = mount(<MessageInput user='user' />);
+
     wrapper.setState({ newMessage: 'Seems legit.' });
     assert.equal(wrapper.state('newMessage'), 'Seems legit.');
   });
