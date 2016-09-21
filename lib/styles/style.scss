@@ -1,5 +1,6 @@
 @import '_reset';
 @import '_variables';
+@import '_header-footer';
 
 /* WHOLE PAGE STYLES */
 html {
@@ -12,36 +13,7 @@ html {
 
 body {
   font-family: $main-font;
+  height: 100vh;
 }
 
-/* Header and Footer */
-
-header,
-footer {
-  background-color: $color-header-bar;
-  color: white;
-}
-
-input,
-textarea {
-  background-color: $color-input-fields;
-}
-
-.ActionButtons {
-  color: white;
-}
-
-#SortUp,
-#SortDown {
-  background-color: $color-sort-button;
-}
-
-#LogInButton,
-#LogOutButton,
-#SubmitButton {
-  background-color: $color-submit-button;
-}
-
-#ClearButton {
-  background-color: $color-clear-button;
-}
+/* Message Display Area */
