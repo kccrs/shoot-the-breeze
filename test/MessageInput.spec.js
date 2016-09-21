@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 
 import MessageInput from '../lib/components/MessageInput';
 // import ActionButtons from '..lib/components/ActionButtons';
@@ -13,12 +13,17 @@ describe('MessageInput', () => {
     assert.equal(wrapper.type(), 'section');
   });
 
-  it('should have an input for the message', () => {
+  it('should render an input for the message', () => {
     assert.lengthOf(wrapper.find('textarea'), 1);
   });
 
   it('should render two <ActionButtons /> components', () => {
-    assert.lengthOf(wrapper.find(ActionButtons), 2);
+    assert.lengthOf(wrapper.find('ActionButtons'), 2);
   });
+
+  it('should render an area for CharacterCount', function() {
+    assert.lengthOf(wrapper.find('CharacterCount'), 1);
+  });
+
 
 });
