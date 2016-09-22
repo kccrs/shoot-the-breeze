@@ -50,6 +50,22 @@ describe('Application', () => {
 
   context('Check for default state', () => {
     const wrapper = mount(<Application />);
-      expect(wrapper.state().messages).to.deepEqual([]);
+
+    it('should have a default messages array that is empty', function() {
+      expect(wrapper.state().messages).to.deep.equal([]);
+    });
+
+    it('should have a default filtered messages array that is empty', function() {
+      expect(wrapper.state().filteredMessages).to.deep.equal([]);
+    });
+
+    it('should have a default listIsFiltered property that is false', function() {
+      expect(wrapper.state().listIsFiltered).to.equal(false);
+    });
+
+    it('should have a default user state that is null', function() {
+      expect(wrapper.state().user).to.deep.equal(null);
+    });
+
   });
 });

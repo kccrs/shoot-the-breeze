@@ -29414,9 +29414,9 @@
 	
 	var _firebase2 = _interopRequireDefault(_firebase);
 	
-	var _Filter = __webpack_require__(479);
+	var _FilterMessagesByInput = __webpack_require__(479);
 	
-	var _Filter2 = _interopRequireDefault(_Filter);
+	var _FilterMessagesByInput2 = _interopRequireDefault(_FilterMessagesByInput);
 	
 	var _SortButtons = __webpack_require__(480);
 	
@@ -29450,12 +29450,11 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var _ = __webpack_require__(470);
-	
 	//Components
 	
 	
 	//Helper Functions
+	
 	
 	var Application = function (_Component) {
 	  _inherits(Application, _Component);
@@ -29522,7 +29521,7 @@
 	            null,
 	            'Shoot the Breeze'
 	          ),
-	          _react2.default.createElement(_Filter2.default, {
+	          _react2.default.createElement(_FilterMessagesByInput2.default, {
 	            messages: messages,
 	            handleFilter: function handleFilter(filteredMessages) {
 	              return _this3.setState({ filteredMessages: filteredMessages, listIsFiltered: true });
@@ -29538,11 +29537,14 @@
 	            }
 	          })
 	        ),
-	        _react2.default.createElement(_MessagesArea2.default, { messages: messages }),
+	        _react2.default.createElement(_MessagesArea2.default, { messages: messages,
+	          user: this.state.user
+	        }),
 	        _react2.default.createElement(
 	          'aside',
 	          null,
 	          _react2.default.createElement(_UsersList2.default, {
+	            user: this.state.user,
 	            messages: this.state.messages,
 	            handleFilterByUser: function handleFilterByUser(uid) {
 	              return _this3.handleFilterByUser(uid);
@@ -29563,32 +29565,6 @@
 	
 	  return Application;
 	}(_react.Component);
-	
-	// handleUser={(newUser) => this.setState({ user: newUser })}
-	// <header>
-	//     <h1> Shoot the Breeze</h1>
-	//     <Filter />
-	//     <Sort />
-	// </header>
-	// <section>
-	//   //messages render here
-	// </section>
-	// <aside>
-	//   <UsersList />
-	// </aside>
-	// <footer>
-	//   <article>
-	//     <SignIn />
-	//     <SignOutButton />
-	//   </article>
-	//   <article>
-	//     <Filter />
-	//     <CharacterCount />
-	//     <SubmitButton />
-	//     <ClearButton />
-	//   </article>
-	// </footer>
-	
 	
 	exports.default = Application;
 
@@ -51290,16 +51266,16 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Filter = function (_Component) {
-	  _inherits(Filter, _Component);
+	var FilterMessagesByInput = function (_Component) {
+	  _inherits(FilterMessagesByInput, _Component);
 	
-	  function Filter() {
-	    _classCallCheck(this, Filter);
+	  function FilterMessagesByInput() {
+	    _classCallCheck(this, FilterMessagesByInput);
 	
-	    return _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (FilterMessagesByInput.__proto__ || Object.getPrototypeOf(FilterMessagesByInput)).apply(this, arguments));
 	  }
 	
-	  _createClass(Filter, [{
+	  _createClass(FilterMessagesByInput, [{
 	    key: 'filterMessages',
 	    value: function filterMessages(e) {
 	      var regexp = new RegExp(e.target.value, 'i');
@@ -51334,10 +51310,10 @@
 	    }
 	  }]);
 	
-	  return Filter;
+	  return FilterMessagesByInput;
 	}(_react.Component);
 	
-	exports.default = Filter;
+	exports.default = FilterMessagesByInput;
 
 /***/ },
 /* 480 */
@@ -51524,6 +51500,7 @@
 	    value: function render() {
 	      var _this2 = this;
 	
+	      var user = this.props.user;
 	      return _react2.default.createElement(
 	        'article',
 	        { className: 'UserList' },
@@ -51536,14 +51513,28 @@
 	          'ul',
 	          null,
 	          this.uniqueUsers.map(function (u) {
-	            return _react2.default.createElement(
-	              'li',
-	              {
-	                onClick: _this2.props.handleFilterByUser.bind(_this2, u.key),
-	                key: u.key },
-	              ' ',
-	              u.userName
-	            );
+	            if (u.key === user.uid) {
+	              return _react2.default.createElement(
+	                'li',
+	                {
+	                  onClick: function onClick() {
+	                    return _this2.props.handleFilterByUser(u.key);
+	                  },
+	                  key: u.key,
+	                  className: 'MyUserName' },
+	                u.userName
+	              );
+	            } else {
+	              return _react2.default.createElement(
+	                'li',
+	                {
+	                  onClick: function onClick() {
+	                    return _this2.props.handleFilterByUser(u.key);
+	                  },
+	                  key: u.key },
+	                u.userName
+	              );
+	            }
 	          })
 	        )
 	      );
@@ -51890,6 +51881,8 @@
 	  _createClass(MessagesArea, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      return _react2.default.createElement(
 	        'ul',
 	        { className: 'MessageList' },
@@ -51897,7 +51890,8 @@
 	          return _react2.default.createElement(_Message2.default, {
 	            key: m.key,
 	            message: m,
-	            user: m.user
+	            user: m.user,
+	            loggedInUser: _this2.props.user
 	          });
 	        })
 	      );
@@ -51929,6 +51923,8 @@
 	
 	var _moment2 = _interopRequireDefault(_moment);
 	
+	var _firebase = __webpack_require__(473);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51951,17 +51947,19 @@
 	    value: function render() {
 	      var message = this.props.message;
 	      var user = this.props.user;
+	      var loggedInUser = this.props.loggedInUser;
+	
 	      return _react2.default.createElement(
 	        'li',
 	        { className: 'SingleMessage', key: message.key },
 	        _react2.default.createElement(
 	          'span',
-	          { className: 'FullMessageDate' },
+	          { className: 'MessageDate FullDate' },
 	          (0, _moment2.default)(message.createdAt).format('MMMM Do, h:mm a')
 	        ),
 	        _react2.default.createElement(
 	          'span',
-	          { className: 'MobileMessageDate' },
+	          { className: 'MessageDate MobileDate' },
 	          (0, _moment2.default)(message.createdAt).format('M[/]D, h:mm a')
 	        ),
 	        _react2.default.createElement(
@@ -51969,6 +51967,13 @@
 	          { className: 'UserName' },
 	          user.displayName
 	        ),
+	        loggedInUser.uid === user.uid ? _react2.default.createElement('button', {
+	          onClick: function onClick() {
+	            return _firebase.reference.child(message.key).remove();
+	          },
+	          className: 'MessageDelete',
+	          children: 'x'
+	        }) : null,
 	        _react2.default.createElement(
 	          'p',
 	          { className: 'MessageContent' },
@@ -52040,7 +52045,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ninput[type=range] {\n  -webkit-appearance: none;\n  /* Hides the slider so that custom slider can be made */\n  width: 100%;\n  /* Specific width is required for Firefox. */\n  background: transparent;\n  /* Otherwise white in Chrome */ }\n\ninput[type=range]::-webkit-slider-thumb {\n  -webkit-appearance: none; }\n\ninput[type=range]:focus {\n  outline: none;\n  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */ }\n\ninput[type=range]::-ms-track {\n  width: 100%;\n  cursor: pointer;\n  /* Hides the slider so custom styles can be added */\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\n/* Header and Footer */\nheader,\nfooter {\n  background-color: #2c3e50;\n  color: white;\n  height: 25vh;\n  width: 100%; }\n\n.SortContainer,\n.FooterButtons {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-top: 15px; }\n\nh1 {\n  display: none; }\n\ninput,\ntextarea {\n  background-color: #ecf0f1;\n  border-radius: 4px;\n  border: none;\n  font-size: 18px;\n  height: 7vh;\n  padding-left: 10px; }\n\n.FilterArea,\n.MessageContainer {\n  padding-top: 20px; }\n\n.FilterInput {\n  display: block;\n  margin: 0 auto;\n  width: 90%; }\n\n.ActionButtons {\n  border-radius: 4px;\n  border: none;\n  color: white;\n  font-size: 20px;\n  height: 7vh;\n  letter-spacing: .07em;\n  width: 35%; }\n\n#SortUp,\n#SortDown {\n  background-color: #3498db; }\n\n#SortUp,\n#SubmitButton {\n  margin-right: 10px; }\n\n#SortDown,\n#ClearButton {\n  margin-left: 10px; }\n\nfooter {\n  bottom: 0;\n  margin-top: 10px;\n  position: fixed; }\n\n.LogIn,\n.LogOut {\n  display: none; }\n\n.MessageContainer {\n  display: flex;\n  justify-content: center; }\n\ntextarea {\n  margin-right: 20px;\n  padding-top: 10px;\n  width: 70%; }\n\n.CharacterCount {\n  font-size: 18px;\n  padding-top: 10px; }\n\n#LogInButton,\n#LogOutButton,\n#SubmitButton {\n  background-color: #2ecc71; }\n\n#ClearButton {\n  background-color: #e74c3c; }\n\n.MessageList {\n  height: 50vh;\n  margin: 0 auto;\n  overflow-y: scroll;\n  width: 90%; }\n\n.SingleMessage {\n  font-size: 20px;\n  margin-top: 15px; }\n\n.MessageDate {\n  color: #9b59b6; }\n\n.UserName {\n  color: #2980b9;\n  font-weight: bold;\n  margin-left: 12px; }\n\n.MessageContent {\n  margin-top: 10px; }\n\n.UserList {\n  display: none; }\n\n/* WHOLE PAGE STYLES */\nhtml {\n  box-sizing: border-box; }\n\n*, *:before, *:after {\n  box-sizing: inherit; }\n\nbody {\n  font-family: \"Fira Sans\", sans-serif;\n  height: 100vh;\n  position: relative; }\n\n/* Message Display Area */\n", ""]);
+	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ninput[type=range] {\n  -webkit-appearance: none;\n  /* Hides the slider so that custom slider can be made */\n  width: 100%;\n  /* Specific width is required for Firefox. */\n  background: transparent;\n  /* Otherwise white in Chrome */ }\n\ninput[type=range]::-webkit-slider-thumb {\n  -webkit-appearance: none; }\n\ninput[type=range]:focus {\n  outline: none;\n  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */ }\n\ninput[type=range]::-ms-track {\n  width: 100%;\n  cursor: pointer;\n  /* Hides the slider so custom styles can be added */\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\n/* Header and Footer */\nheader,\nfooter {\n  background-color: #2c3e50;\n  color: white;\n  height: 25vh;\n  width: 100%; }\n\n.SortContainer,\n.FooterButtons {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-top: 15px; }\n\nh1 {\n  display: none; }\n\ninput,\ntextarea {\n  background-color: #ecf0f1;\n  border-radius: 4px;\n  border: none;\n  font-size: 18px;\n  height: 7vh;\n  padding-left: 10px; }\n\n.FilterArea,\n.MessageContainer {\n  padding-top: 20px; }\n\n.FilterInput {\n  display: block;\n  margin: 0 auto;\n  width: 90%; }\n\n.ActionButtons {\n  border-radius: 4px;\n  border: none;\n  color: white;\n  font-size: 20px;\n  height: 7vh;\n  letter-spacing: .07em;\n  width: 35%; }\n\n#SortUp,\n#SortDown {\n  background-color: #3498db; }\n\n#SortUp,\n#SubmitButton {\n  margin-right: 10px; }\n\n#SortDown,\n#ClearButton {\n  margin-left: 10px; }\n\nfooter {\n  bottom: 0;\n  margin-top: 10px;\n  position: fixed; }\n\n.LogIn,\n.LogOut {\n  display: none; }\n\n.MessageContainer {\n  display: flex;\n  justify-content: center; }\n\ntextarea {\n  margin-right: 20px;\n  padding-top: 10px;\n  width: 70%; }\n\n.CharacterCount {\n  font-size: 18px;\n  padding-top: 10px; }\n\n#LogInButton,\n#LogOutButton,\n#SubmitButton {\n  background-color: #2ecc71; }\n\n#ClearButton {\n  background-color: #e74c3c; }\n\n.MessageList {\n  height: 50vh;\n  margin: 0 auto;\n  overflow-y: scroll;\n  width: 90%; }\n\n.SingleMessage {\n  font-size: 20px;\n  margin-top: 15px; }\n\n.MessageDate {\n  color: #9b59b6; }\n\n.UserName {\n  color: #2980b9;\n  font-weight: bold;\n  margin-left: 12px; }\n\n.MessageContent {\n  margin-top: 10px; }\n\n.UserList {\n  display: none; }\n\n.MessageDelete {\n  background-color: red;\n  border-radius: 100%;\n  height: 40px;\n  width: 40px;\n  color: white;\n  border: none;\n  font-size: 1.2em;\n  margin-left: 10px; }\n\n/* WHOLE PAGE STYLES */\nhtml {\n  box-sizing: border-box; }\n\n*, *:before, *:after {\n  box-sizing: inherit; }\n\nbody {\n  font-family: \"Fira Sans\", sans-serif;\n  height: 100vh;\n  position: relative; }\n\n/* Message Display Area */\n", ""]);
 	
 	// exports
 
