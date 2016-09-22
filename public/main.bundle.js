@@ -51627,10 +51627,14 @@
 	          { className: 'LogOut' },
 	          _react2.default.createElement(
 	            'p',
-	            null,
-	            'Logged in as ',
-	            user.displayName,
-	            ' (',
+	            { className: 'LogText' },
+	            'Logged in as',
+	            _react2.default.createElement(
+	              'span',
+	              { className: 'LogInName' },
+	              user.displayName
+	            ),
+	            '(',
 	            user.email,
 	            ')'
 	          ),
@@ -51737,7 +51741,7 @@
 	        { className: 'MessageInput' },
 	        _react2.default.createElement(
 	          'article',
-	          { className: 'MessageContainer' },
+	          { className: 'InputContainer' },
 	          _react2.default.createElement('textarea', {
 	            placeholder: 'Message…',
 	            value: this.state.newMessage,
@@ -51959,7 +51963,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'span',
-	          { className: 'MessageDate MobileDate' },
+	          { className: 'MessageDate  MobileDate' },
 	          (0, _moment2.default)(message.createdAt).format('M[/]D, h:mm a')
 	        ),
 	        _react2.default.createElement(
@@ -52020,7 +52024,7 @@
 	var content = __webpack_require__(490);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(492)(content, {});
+	var update = __webpack_require__(493)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -52045,7 +52049,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ninput[type=range] {\n  -webkit-appearance: none;\n  /* Hides the slider so that custom slider can be made */\n  width: 100%;\n  /* Specific width is required for Firefox. */\n  background: transparent;\n  /* Otherwise white in Chrome */ }\n\ninput[type=range]::-webkit-slider-thumb {\n  -webkit-appearance: none; }\n\ninput[type=range]:focus {\n  outline: none;\n  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */ }\n\ninput[type=range]::-ms-track {\n  width: 100%;\n  cursor: pointer;\n  /* Hides the slider so custom styles can be added */\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\n/* Header and Footer */\nheader,\nfooter {\n  background-color: #2c3e50;\n  color: white;\n  height: 25vh;\n  width: 100%; }\n\n.SortContainer,\n.FooterButtons {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-top: 15px; }\n\nh1 {\n  display: none; }\n\ninput,\ntextarea {\n  background-color: #ecf0f1;\n  border-radius: 4px;\n  border: none;\n  font-size: 18px;\n  height: 7vh;\n  padding-left: 10px; }\n\n.FilterArea,\n.MessageContainer {\n  padding-top: 20px; }\n\n.FilterInput {\n  display: block;\n  margin: 0 auto;\n  width: 90%; }\n\n.ActionButtons {\n  border-radius: 4px;\n  border: none;\n  color: white;\n  font-size: 20px;\n  height: 7vh;\n  letter-spacing: .07em;\n  width: 35%; }\n\n#SortUp,\n#SortDown {\n  background-color: #3498db; }\n\n#SortUp,\n#SubmitButton {\n  margin-right: 10px; }\n\n#SortDown,\n#ClearButton {\n  margin-left: 10px; }\n\nfooter {\n  bottom: 0;\n  margin-top: 10px;\n  position: fixed; }\n\n.LogIn,\n.LogOut {\n  display: none; }\n\n.MessageContainer {\n  display: flex;\n  justify-content: center; }\n\ntextarea {\n  margin-right: 20px;\n  padding-top: 10px;\n  width: 70%; }\n\n.CharacterCount {\n  font-size: 18px;\n  padding-top: 10px; }\n\n#LogInButton,\n#LogOutButton,\n#SubmitButton {\n  background-color: #2ecc71; }\n\n#ClearButton {\n  background-color: #e74c3c; }\n\n.MessageList {\n  height: 50vh;\n  margin: 0 auto;\n  overflow-y: scroll;\n  width: 90%; }\n\n.SingleMessage {\n  font-size: 20px;\n  margin-top: 15px; }\n\n.MessageDate {\n  color: #9b59b6; }\n\n.UserName {\n  color: #2980b9;\n  font-weight: bold;\n  margin-left: 12px; }\n\n.MessageContent {\n  margin-top: 10px; }\n\n.UserList {\n  display: none; }\n\n.MessageDelete {\n  background-color: red;\n  border-radius: 100%;\n  height: 40px;\n  width: 40px;\n  color: white;\n  border: none;\n  font-size: 1.2em;\n  margin-left: 10px; }\n\n/* WHOLE PAGE STYLES */\nhtml {\n  box-sizing: border-box; }\n\n*, *:before, *:after {\n  box-sizing: inherit; }\n\nbody {\n  font-family: \"Fira Sans\", sans-serif;\n  height: 100vh;\n  position: relative; }\n\n/* Message Display Area */\n", ""]);
+	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ninput[type=range] {\n  -webkit-appearance: none;\n  /* Hides the slider so that custom slider can be made */\n  width: 100%;\n  /* Specific width is required for Firefox. */\n  background: transparent;\n  /* Otherwise white in Chrome */ }\n\ninput[type=range]::-webkit-slider-thumb {\n  -webkit-appearance: none; }\n\ninput[type=range]:focus {\n  outline: none;\n  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */ }\n\ninput[type=range]::-ms-track {\n  width: 100%;\n  cursor: pointer;\n  /* Hides the slider so custom styles can be added */\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\n/* Header and Footer */\nheader,\nfooter {\n  background-color: #2c3e50;\n  color: white;\n  height: 25vh;\n  width: 100%; }\n\n.MessageInput {\n  display: flex;\n  flex-wrap: wrap; }\n\n.SortContainer,\n.FooterButtons {\n  display: flex;\n  justify-content: center;\n  margin-top: 15px;\n  width: 100%; }\n  @media screen and (min-width: 640px) {\n    .SortContainer,\n    .FooterButtons {\n      float: right;\n      width: 35%;\n      padding: 5px 10px 0 0; } }\n\nh1 {\n  display: none; }\n  @media screen and (min-width: 640px) {\n    h1 {\n      display: inline-block;\n      margin-left: 10px; } }\n\ninput,\ntextarea {\n  background-color: #ecf0f1;\n  border-radius: 4px;\n  border: none;\n  font-size: 18px;\n  height: 7vh;\n  padding-left: 10px; }\n  @media screen and (min-width: 640px) {\n    input,\n    textarea {\n      margin-left: 15px; } }\n\n.FilterArea,\n.InputContainer {\n  padding-top: 20px;\n  width: 100%; }\n  @media screen and (min-width: 640px) {\n    .FilterArea,\n    .InputContainer {\n      display: inline-block;\n      width: 40%; } }\n\n.FilterInput {\n  display: block;\n  margin: 0 auto;\n  width: 90%; }\n\n.ActionButtons {\n  border-radius: 4px;\n  border: none;\n  color: white;\n  font-size: 20px;\n  height: 7vh;\n  letter-spacing: .07em;\n  width: 35%; }\n  @media screen and (min-width: 640px) {\n    .ActionButtons {\n      width: 43%; } }\n\n#SortUp,\n#SortDown {\n  background-color: #3498db; }\n\n#SortUp,\n#SubmitButton {\n  margin-right: 10px; }\n\n#SortDown,\n#ClearButton {\n  margin-left: 10px; }\n\nfooter {\n  bottom: 0;\n  margin-top: 10px;\n  position: fixed; }\n  @media screen and (min-width: 640px) {\n    footer {\n      height: 20vh; } }\n\n.LogIn,\n.LogOut {\n  display: none; }\n  @media screen and (min-width: 640px) {\n    .LogIn,\n    .LogOut {\n      background-color: #7f8c8d;\n      display: inline-block;\n      height: 7vh;\n      width: 100%; } }\n\n.LogText {\n  display: inline-block;\n  margin-left: 15px;\n  margin-top: 15px;\n  width: 70%; }\n\n.LogInName {\n  font-weight: bold;\n  margin: 0 5px; }\n\n#LogInButton,\n#LogOutButton {\n  float: right;\n  height: 5vh;\n  margin: 6px 15px 6px 0;\n  width: 14%; }\n\n.InputContainer {\n  display: flex;\n  justify-content: center; }\n  @media screen and (min-width: 640px) {\n    .InputContainer {\n      width: 65%; } }\n\ntextarea {\n  margin-right: 20px;\n  padding-top: 10px;\n  width: 70%; }\n  @media screen and (min-width: 640px) {\n    textarea {\n      width: 80%; } }\n\n#LogInButton,\n#LogOutButton,\n#SubmitButton {\n  background-color: #2ecc71; }\n\n#ClearButton {\n  background-color: #e74c3c; }\n\n@media screen and (min-width: 640px) {\n  header {\n    height: 15vh; } }\n\n.CharacterCount {\n  font-size: 18px;\n  padding-top: 10px; }\n  @media screen and (min-width: 640px) {\n    .CharacterCount {\n      font-size: 22px;\n      height: 10vh; } }\n\n.MessageList {\n  height: 50vh;\n  margin: 0 auto;\n  overflow-y: scroll;\n  width: 90%; }\n  @media screen and (min-width: 640px) {\n    .MessageList {\n      display: inline-block;\n      width: 69%;\n      height: 65vh; } }\n\n.SingleMessage {\n  font-size: 20px;\n  margin-top: 15px; }\n\n.MessageDate {\n  color: #9b59b6; }\n\n.FullDate {\n  display: none; }\n  @media screen and (min-width: 640px) {\n    .FullDate {\n      display: inline; } }\n\n@media screen and (min-width: 640px) {\n  .MobileDate {\n    display: none; } }\n\n.UserName {\n  color: #2980b9;\n  font-weight: bold;\n  margin-left: 12px; }\n\n.MessageContent {\n  margin-top: 10px; }\n\naside {\n  display: none; }\n  @media screen and (min-width: 640px) {\n    aside {\n      display: inline-block;\n      background-color: blanchedalmond;\n      float: right;\n      height: 65vh;\n      width: 30%; } }\n\n.MessageDelete {\n  background-color: red;\n  border-radius: 100%;\n  height: 40px;\n  width: 40px;\n  color: white;\n  border: none;\n  font-size: 1.2em;\n  margin-left: 10px; }\n\n.MyUserName::after {\n  content: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../almond.jpeg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) + ");\n  height: 40px; }\n\n/* WHOLE PAGE STYLES */\nhtml {\n  box-sizing: border-box; }\n\n*, *:before, *:after {\n  box-sizing: inherit; }\n\nbody {\n  font-family: \"Fira Sans\", sans-serif;\n  height: 100vh;\n  position: relative; }\n\n/* Message Display Area */\n", ""]);
 	
 	// exports
 
@@ -52107,7 +52111,8 @@
 
 
 /***/ },
-/* 492 */
+/* 492 */,
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

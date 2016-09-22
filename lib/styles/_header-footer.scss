@@ -8,16 +8,30 @@ footer {
   width: 100%;
 }
 
+.MessageInput {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .SortContainer,
 .FooterButtons {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   margin-top: 15px;
+  width: 100%;
+  @media #{$breakpoint-640} {
+    float: right;
+    width: 35%;
+    padding: 5px 10px 0 0;
+  }
 }
 
 h1 {
   display: none;
+  @media #{$breakpoint-640} {
+    display: inline-block;
+    margin-left: 10px;
+  }
 }
 
 input,
@@ -28,11 +42,19 @@ textarea {
   font-size: 18px;
   height: 7vh;
   padding-left: 10px;
+  @media #{$breakpoint-640} {
+    margin-left: 15px;
+  }
 }
 
 .FilterArea,
-.MessageContainer {
+.InputContainer {
   padding-top: 20px;
+  width: 100%;
+  @media #{$breakpoint-640} {
+    display: inline-block;
+    width: 40%;
+  }
 }
 
 .FilterInput {
@@ -49,6 +71,12 @@ textarea {
   height: 7vh;
   letter-spacing: .07em;
   width: 35%;
+  @media #{$breakpoint-640} {
+    width: 43%;
+  }
+  @media #{$breakpoint-1200} {
+    width: 35%;
+  }
 }
 
 #SortUp,
@@ -70,27 +98,58 @@ footer {
   bottom: 0;
   margin-top: 10px;
   position: fixed;
+  @media #{$breakpoint-640} {
+    height: 20vh;
+  }
 }
 
 .LogIn,
 .LogOut {
   display: none;
+  @media #{$breakpoint-640} {
+    background-color: $color-login-bar;
+    display: inline-block;
+    height: 7vh;
+    width: 100%;
+  }
 }
 
-.MessageContainer {
+.LogText {
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 15px;
+  width: 70%;
+}
+
+.LogInName {
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+#LogInButton,
+#LogOutButton {
+  float: right;
+  height: 5vh;
+  margin: 6px 15px 6px 0;
+  width: 14%;
+}
+
+.InputContainer {
   display: flex;
   justify-content: center;
+  @media #{$breakpoint-640} {
+    // display: inline-block;
+    width: 65%;
+  }
 }
 
 textarea {
   margin-right: 20px;
   padding-top: 10px;
   width: 70%;
-}
-
-.CharacterCount {
-  font-size: 18px;
-  padding-top: 10px;
+  @media #{$breakpoint-640} {
+    width: 80%;
+  }
 }
 
 #LogInButton,
@@ -101,4 +160,22 @@ textarea {
 
 #ClearButton {
   background-color: $color-clear-button;
+}
+
+header {
+  @media #{$breakpoint-640} {
+    height: 15vh;
+  }
+}
+
+.CharacterCount {
+  font-size: 18px;
+  padding-top: 10px;
+  @media #{$breakpoint-640} {
+    // display: inline-block;
+    font-size: 22px;
+    height: 10vh;
+    // padding-top: -20px;
+    // width: 10%;
+  }
 }

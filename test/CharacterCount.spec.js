@@ -18,8 +18,9 @@ describe('CharacterCount', () => {
 
   it('allows us to set state', () => {
     const wrapper = mount(<CharacterCount />);
-    assert.equal(wrapper.state('charactersLeft'), 140);
+        
     wrapper.setState({ charactersLeft: 20 });
+
     assert.equal(wrapper.state('charactersLeft'), 20);
   });
 });

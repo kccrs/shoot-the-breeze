@@ -12,8 +12,8 @@ describe('Application', () => {
   context('shallow tests', () => {
 
     const wrapper = shallow(<Application />)
-    
-    it('renders as a <div>', () => {  
+
+    it('renders as a <div>', () => {
       assert.equal(wrapper.type(), 'div');
     });
 
@@ -22,7 +22,7 @@ describe('Application', () => {
 
   context('Check for components', () => {
     const wrapper = mount(<Application />);
-    
+
     it('has a message area component', () => {
       assert.lengthOf(wrapper.find('MessagesArea'), 1);
     });
