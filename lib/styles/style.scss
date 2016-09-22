@@ -1,9 +1,11 @@
 @import '_reset';
 @import '_variables';
+@import '_buttons';
 @import '_header-footer';
 @import '_message-area';
 
 /* WHOLE PAGE STYLES */
+
 html {
   box-sizing: border-box;
 }
@@ -17,5 +19,3 @@ body {
   height: 100vh;
   position: relative;
 }
-
-/* Message Display Area */
