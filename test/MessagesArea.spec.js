@@ -6,9 +6,12 @@ import MessagesArea from '../lib/components/MessagesArea';
 import mockMessages from './helpers/mock-messages';
 
 describe('Messages Area', function() {
-    const wrapper = mount(<MessagesArea messages={mockMessages} />)
+    const wrapper = shallow(<MessagesArea messages={mockMessages} />)
     
-    it('should mount', function() {
-
+    it('should be a UL', () => {
+        assert.lengthOf(wrapper.find('ul'), 1);
+    });
+    it('should render messages when messages are passed in', () => {
+        assert.lengthOf(wrapper.find('Message'), 11);
     });
 });
