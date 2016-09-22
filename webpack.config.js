@@ -23,7 +23,7 @@ module.exports = {
       { test: /\.scss$/, loader: 'style!css!sass' },
     ],
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   resolve: {
     extensions: ['', '.js', '.jsx', '.json', '.scss', '.css'],
   },
