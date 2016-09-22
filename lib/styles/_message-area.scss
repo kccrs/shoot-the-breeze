@@ -34,7 +34,6 @@
   }
 }
 
-
 .UserName {
   color: $color-user-text;
   font-weight: bold;
@@ -49,7 +48,7 @@ aside {
   display: none;
   @media #{$breakpoint-640} {
     display: inline-block;
-    background-color: $color-user-area;
+    background-color: $color-input-fields;
     float: right;
     height: 65vh;
     width: 30%;
@@ -69,11 +68,22 @@ aside {
     height: 20px;
     width: 20px;
     font-size: .6em;
+    padding-bottom: 5px;
   }
 }
 
-.MyUserName img {
+.UserList {
+  color: $color-header-bar;
+  li {
+    margin: 15px;
+  }
+}
 
-  // content:  url('../../almond.jpeg');
+h3 {
+  font-weight: bold;
+  margin: 15px;
+}
+
+.MyUserName img {
   height: 20px;
 }

@@ -26,12 +26,6 @@ footer {
   }
 }
 
-.FooterButtons {
-  @media #{$breakpoint-640} {
-    // margin-left: 32px;
-  }
-}
-
 h1 {
   display: none;
   @media #{$breakpoint-640} {
@@ -79,6 +73,9 @@ textarea {
   width: 35%;
   @media #{$breakpoint-640} {
     width: 43%;
+  }
+  @media #{$breakpoint-1200} {
+    width: 35%;
   }
 }
 
