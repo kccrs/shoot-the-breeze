@@ -19,8 +19,6 @@ footer {
     float: right;
     width: 34%;
     padding: 5px 10px 0 0;
-    // height: 100%;
-    // width: 35%;
   }
 }
 
@@ -45,11 +43,10 @@ textarea {
   }
 }
 
-
 .FilterArea,
 .InputContainer {
   padding-top: 20px;
-  width: 50%;
+  width: 100%;
   @media #{$breakpoint-640} {
     display: inline-block;
     width: 45%;
@@ -94,11 +91,42 @@ footer {
   bottom: 0;
   margin-top: 10px;
   position: fixed;
+  @media #{$breakpoint-640} {
+    height: 20vh;
+  }
 }
 
-.LogIn,
+.LogIn {
+  display: none;
+}
+
+.LogText {
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 15px;
+  width: 70%;
+}
+
+.LogInName {
+  font-weight: bold;
+  margin: 0 5px;
+}
+
 .LogOut {
   display: none;
+  @media #{$breakpoint-640} {
+    background-color: $color-login-bar;
+    display: inline-block;
+    height: 7vh;
+    width: 100%;
+  }
+}
+
+#LogOutButton {
+  float: right;
+  height: 5vh;
+  margin: 6px 20px 6px 0;
+  width: 14%;
 }
 
 .InputContainer {
@@ -129,16 +157,9 @@ textarea {
   background-color: $color-clear-button;
 }
 
-header,
-footer {
+header {
   @media #{$breakpoint-640} {
     height: 15vh;
-  }
-}
-
-.SortContainer {
-  @media #{$breakpoint-640} {
-
   }
 }
 

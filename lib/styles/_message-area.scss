@@ -17,7 +17,17 @@
 
 .FullDate {
   display: none;
+  @media #{$breakpoint-640} {
+    display: inline;
+  }
 }
+
+.MobileDate {
+  @media #{$breakpoint-640} {
+    display: none;
+  }
+}
+
 
 .UserName {
   color: $color-user-text;
