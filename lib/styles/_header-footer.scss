@@ -16,24 +16,20 @@ footer {
   justify-content: center;
   margin-top: 15px;
   @media #{$breakpoint-640} {
-    // display: inline-block;
     float: right;
-    height: 100%;
-    width: 35%;
+    width: 34%;
+    padding: 5px 10px 0 0;
+    // height: 100%;
+    // width: 35%;
   }
 }
 
-// .FooterButtons {
-//   // display: inline;
-//   float: right;
-// }
-
-
 h1 {
   display: none;
-  // @media #{$breakpoint-640} {
-  //   display: inline-block;
-  // }
+  @media #{$breakpoint-640} {
+    display: inline-block;
+    margin-left: 10px;
+  }
 }
 
 input,
@@ -44,6 +40,9 @@ textarea {
   font-size: 18px;
   height: 7vh;
   padding-left: 10px;
+  @media #{$breakpoint-640} {
+    margin-left: 15px;
+  }
 }
 
 
@@ -53,8 +52,7 @@ textarea {
   width: 50%;
   @media #{$breakpoint-640} {
     display: inline-block;
-    // width: 50%;
-    // height: 100%;
+    width: 45%;
   }
 }
 
@@ -62,30 +60,7 @@ textarea {
   display: block;
   margin: 0 auto;
   width: 90%;
-  @media #{$breakpoint-640} {
-    // display: inline-block;
-    width: 100%;
-  }
 }
-
-header,
-.MessageInput {
-  @media #{$breakpoint-640} {
-    // display: flex;
-    // display: inline-block;
-    // justify-content: space-between;
-    // align-items: center;
-    // height: 100%;
-    // width: 100%;
-  }
-}
-
-// .MessageInput {
-//   @media #{$breakpoint-640} {
-//     // height: 50%;
-//     width: 60%;
-//   }
-// }
 
 .ActionButtons {
   border-radius: 4px;
@@ -99,8 +74,6 @@ header,
     width: 40%;
   }
 }
-
-
 
 #SortUp,
 #SortDown {
@@ -142,16 +115,7 @@ textarea {
   padding-top: 10px;
   width: 70%;
   @media #{$breakpoint-640} {
-    width: 70%;
-  }
-}
-
-.CharacterCount {
-  font-size: 18px;
-  padding-top: 10px;
-  @media #{$breakpoint-640} {
-    display: inline-block;
-    width: 10%;
+    width: 80%;
   }
 }
 
@@ -174,6 +138,18 @@ footer {
 
 .SortContainer {
   @media #{$breakpoint-640} {
-    width: 30%;
+
+  }
+}
+
+.CharacterCount {
+  font-size: 18px;
+  padding-top: 10px;
+  @media #{$breakpoint-640} {
+    display: inline-block;
+    font-size: 22px;
+    height: 10vh;
+    padding-top: -20px;
+    width: 10%;
   }
 }
