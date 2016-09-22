@@ -8,7 +8,7 @@ import Message from '../lib/components/Message';
 
 describe('Message', () => {
 
-  const wrapper = shallow(<Message message={mockMessages[0]} user={mockMessages[0].user}/>);
+  const wrapper = shallow(<Message message={mockMessages[0]} user={mockMessages[0].user} loggedInUser={mockMessages[0].user}/>);
   const message = mockMessages[0];
 
   it('renders as an <li>', () => {
@@ -23,6 +23,10 @@ describe('Message', () => {
 
   it('should render content for the message', () => {
     assert.lengthOf(wrapper.find('.MessageContent'), 1);
+  });
+
+  it('should have a delete button for the messages belonging to the logged in user', () => {
+    assert.lengthOf(wrapper.find('.MessageDelete'), 1);
   });
 
 });
