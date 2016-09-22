@@ -4,6 +4,11 @@
   margin: 0 auto;
   overflow-y: scroll;
   width: 90%;
+  @media #{$breakpoint-640} {
+    display: inline-block;
+    width: 69%;
+    height: 65vh
+  }
 }
 
 .SingleMessage {
@@ -39,6 +44,13 @@
   margin-top: 10px;
 }
 
-.UserList {
+aside {
   display: none;
+  @media #{$breakpoint-640} {
+    display: inline-block;
+    background-color: blanchedalmond;
+    float: right;
+    height: 65vh;
+    width: 30%;
+  }
 }
