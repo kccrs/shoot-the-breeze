@@ -8,17 +8,27 @@ footer {
   width: 100%;
 }
 
+.MessageInput {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .SortContainer,
 .FooterButtons {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   margin-top: 15px;
+  width: 100%;
   @media #{$breakpoint-640} {
     float: right;
-    width: 34%;
+    width: 35%;
     padding: 5px 10px 0 0;
+  }
+}
+
+.FooterButtons {
+  @media #{$breakpoint-640} {
+    // margin-left: 32px;
   }
 }
 
@@ -49,7 +59,7 @@ textarea {
   width: 100%;
   @media #{$breakpoint-640} {
     display: inline-block;
-    width: 45%;
+    width: 40%;
   }
 }
 
@@ -68,7 +78,7 @@ textarea {
   letter-spacing: .07em;
   width: 35%;
   @media #{$breakpoint-640} {
-    width: 40%;
+    width: 43%;
   }
 }
 
@@ -96,8 +106,15 @@ footer {
   }
 }
 
-.LogIn {
+.LogIn,
+.LogOut {
   display: none;
+  @media #{$breakpoint-640} {
+    background-color: $color-login-bar;
+    display: inline-block;
+    height: 7vh;
+    width: 100%;
+  }
 }
 
 .LogText {
@@ -112,20 +129,11 @@ footer {
   margin: 0 5px;
 }
 
-.LogOut {
-  display: none;
-  @media #{$breakpoint-640} {
-    background-color: $color-login-bar;
-    display: inline-block;
-    height: 7vh;
-    width: 100%;
-  }
-}
-
+#LogInButton,
 #LogOutButton {
   float: right;
   height: 5vh;
-  margin: 6px 20px 6px 0;
+  margin: 6px 15px 6px 0;
   width: 14%;
 }
 
@@ -133,7 +141,7 @@ footer {
   display: flex;
   justify-content: center;
   @media #{$breakpoint-640} {
-    display: inline-block;
+    // display: inline-block;
     width: 65%;
   }
 }
@@ -167,10 +175,10 @@ header {
   font-size: 18px;
   padding-top: 10px;
   @media #{$breakpoint-640} {
-    display: inline-block;
+    // display: inline-block;
     font-size: 22px;
     height: 10vh;
-    padding-top: -20px;
-    width: 10%;
+    // padding-top: -20px;
+    // width: 10%;
   }
 }
