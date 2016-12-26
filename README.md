@@ -12,7 +12,7 @@ Setup setups:
 
 [Try it out!](https://shoot-the-breeze-9f4d8.firebaseapp.com/)
 
-![Shoot-The-Breeze ScreenShot](https://github.com/Jeff-Duke/shoot-the-breeze/blob/master/public/Screen%20Shot%202016-10-30%20at%2009.33.46.png "Shoot The Breeze ScreenShot")
+![shoot-the-breeze screenshot](https://cloud.githubusercontent.com/assets/14968813/21485665/58cf882c-cb74-11e6-9b8d-8e32ae1ee9b9.png)
 
 
 ## About
