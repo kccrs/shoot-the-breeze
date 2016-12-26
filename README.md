@@ -1,13 +1,5 @@
 # Shoot The Breeze
 
-Setup setups:
-
-- Clone this repository.
-- `npm install`
-
-- `npm start`
-
-
 [Project Specification](http://frontend.turing.io/projects/shoot-the-breeze)
 
 [Try it out!](https://shoot-the-breeze-9f4d8.firebaseapp.com/)
