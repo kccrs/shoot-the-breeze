@@ -2,7 +2,32 @@
 
 [Project Specification](http://frontend.turing.io/projects/shoot-the-breeze)
 
-[Try it out!](https://shoot-the-breeze-9f4d8.firebaseapp.com/)
+## Installation
+
+Clone down [the repository](https://github.com/kccrs/shoot-the-breeze) and install the dependencies.
+
+```
+npm install
+```
+To fire up a development server:
+
+```
+npm start
+```
+
+To build the static files:
+
+```js
+npm run build
+```
+
+To run tests in Node:
+
+```js
+npm test
+```  
+
+[Try it out!](https://shoot-the-breeze-9f4d8.firebaseapp.com/) ** Requires login to Google Firebase ** 
 
 ![shoot-the-breeze screenshot](https://cloud.githubusercontent.com/assets/14968813/21485665/58cf882c-cb74-11e6-9b8d-8e32ae1ee9b9.png)
 
